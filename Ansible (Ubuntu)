@@ -1,0 +1,27 @@
+sudo apt-add-repository -y ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install -y ansible
+ansible --version
+sudo vi /etc/ansible/ansible.cfg
+            [defaults]
+        inventory = /etc/ansible/inventory.ini
+        host_key_checking = False
+sudo vi /etc/ansible/inventory.ini
+        [dev]
+        192.168.2.30
+        192.168.2.40
+        
+        [dev:vars]
+        ansible_user=ubuntu
+        ansible_ssh_pass=vargrant 
+        ansible_private_key_file=/path/to/key.pem
+        
+        [all:vars]
+        ansible_user=ubuntu
+        ansible_ssh_pass=vargrant 
+        ansible_private_key_file=/path/to/key.pem
+        
+        [local]
+        127.0.0.1
+
+ansible all -m ping
